@@ -15,5 +15,7 @@ module.exports = {
         changeOrigin: true
       }
     }
-  }
+  },
+  publicPath: process.env.NODE_ENV === 'codingme' ? '/jushi-web-vant' : '/'
+
 }
