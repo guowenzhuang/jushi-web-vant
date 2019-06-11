@@ -14,7 +14,9 @@ module.exports = {
         secure: false, // 接受 运行在 https 上的服务
         changeOrigin: true
       }
-    }
+    },
+     disableHostCheck: true
+
   },
   publicPath: process.env.NODE_ENV === 'codingme' ? '/jushi-web-vant/dist' : '/'
 

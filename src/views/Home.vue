@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>巨石论坛-vant版</h1>
+    <h1>巨石论坛-vant版 Cloud Studio</h1>
   </div>
 </template>
 
