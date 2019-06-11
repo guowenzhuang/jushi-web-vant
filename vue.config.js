@@ -16,6 +16,6 @@ module.exports = {
       }
     }
   },
-  publicPath: process.env.NODE_ENV === 'codingme' ? '/jushi-web-vant' : '/'
+  publicPath: process.env.NODE_ENV === 'codingme' ? '/jushi-web-vant/dist' : '/'
 
 }
