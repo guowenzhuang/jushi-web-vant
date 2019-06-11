@@ -11,12 +11,22 @@ export default new Router({
         path: '/home',
         name: 'home',
         component: () =>
-            import ('@/views/Home')
+            import('@/views/Home')
     }, {
-        path: '/about',
-        name: 'about',
+        path: '/plate',
+        name: 'plate',
         component: () =>
-            import ('./views/About.vue')
+            import('./views/Plate')
+    }, {
+        path: '/search',
+        name: 'search',
+        component: () =>
+            import('./views/Search')
+    }, {
+        path: '/me',
+        name: 'me',
+        component: () =>
+            import('./views/Me')
     }
 
     ]
