@@ -1,17 +1,58 @@
 <template>
   <div class="home">
-    <h1>巨石论坛-vant版 Cloud Studio 测试</h1>
+    <van-tabbar v-model="active">
+      <van-tabbar-item name="home">
+        <img
+          slot="icon"
+          slot-scope="props"
+          :src="props.active?tabBarIcon['home-select']:tabBarIcon.home"
+        >
+      </van-tabbar-item>
+      <van-tabbar-item name="plate">
+        <img
+          slot="icon"
+          slot-scope="props"
+          :src="props.active?tabBarIcon['plate-select']:tabBarIcon.plate"
+        >
+      </van-tabbar-item>
+      <van-tabbar-item name="search">
+        <img
+          slot="icon"
+          slot-scope="props"
+          :src="props.active?tabBarIcon['search-select']:tabBarIcon.search"
+        >
+      </van-tabbar-item>
+      <van-tabbar-item name="me">
+        <img
+          slot="icon"
+          slot-scope="props"
+          :src="props.active?tabBarIcon['me-select']:tabBarIcon.me"
+        >
+      </van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+  export default {
+    name: 'Home',
+    data() {
+      return {
+        active: 0,
+        tabBarIcon: {
+          'home': 'http://psgrfzlre.bkt.clouddn.com/image/tabbar/home.png',
+          'plate': 'http://psgrfzlre.bkt.clouddn.com/image/tabbar/plate.png',
+          'search': 'http://psgrfzlre.bkt.clouddn.com/image/tabbar/search.png',
+          'me': 'http://psgrfzlre.bkt.clouddn.com/image/tabbar/me.png',
+          'home-select': 'http://psgrfzlre.bkt.clouddn.com/image/tabbar/home-select.png',
+          'plate-select': 'http://psgrfzlre.bkt.clouddn.com/image/tabbar/plate-select.png',
+          'search-select': 'http://psgrfzlre.bkt.clouddn.com/image/tabbar/search-select.png',
+          'me-select': 'http://psgrfzlre.bkt.clouddn.com/image/tabbar/me-select.png'
+        }
+      }
+    },
+    methods: {
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+    }
   }
-}
 </script>

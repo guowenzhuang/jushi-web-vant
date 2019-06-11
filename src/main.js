@@ -4,9 +4,9 @@ import router from './router'
 import store from './store'
 import './registerServiceWorker'
 import 'lib-flexible'
-import { Button } from 'vant'
+import PluginVant from '@/plugin/vant'
 
-Vue.use(Button)
+
 Vue.config.productionTip = false
 
 new Vue({
