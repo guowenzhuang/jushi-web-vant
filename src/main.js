@@ -6,7 +6,6 @@ import './registerServiceWorker'
 import 'lib-flexible'
 import PluginVant from '@/plugin/vant'
 
-
 Vue.config.productionTip = false
 
 new Vue({
