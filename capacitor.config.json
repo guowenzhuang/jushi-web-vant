@@ -1,0 +1,7 @@
+{
+  "appId": "com.gwz.jushi",
+  "appName": "jushi",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "www"
+}

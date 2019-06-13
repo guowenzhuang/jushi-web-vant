@@ -6,12 +6,10 @@
       <van-cell is-link>
         <template slot="default">
           <div class="login_list" @click="login()">
-            <van-icon name="contact" size="30px"/>
-             <van-button style="margin-left: 20px;border: 0px;" >
-             登录
+            <font-awesome-icon icon="user-secret" size="lg" />
+             <van-button style="margin-left: 20px;border: 0px;font-size: 18px;" >
+                登录/注册
              </van-button>
-           
- 
           </div>
         </template>
       </van-cell>
