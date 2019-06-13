@@ -8,6 +8,11 @@ export default new Router({
     path: '/',
     redirect: '/main/home'
   },
+  {
+    path: '/login',
+    name:'login',
+    component: ()=> import('@/views/Login')
+  },
     {
       path: '/main',
       name: 'main',
@@ -34,7 +39,8 @@ export default new Router({
           name: 'me',
           component: () =>
             import('./views/Me')
-        }
+        },
+        
       ]
     }
 

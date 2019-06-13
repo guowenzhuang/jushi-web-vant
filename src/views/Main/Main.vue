@@ -23,13 +23,15 @@
           :src="props.active?tabBarIcon['search-select']:tabBarIcon.search"
         >
       </van-tabbar-item>
+     
       <van-tabbar-item name="me" to="/main/me">
         <img
           slot="icon"
           slot-scope="props"
-          :src="props.active?tabBarIcon['me-select']:tabBarIcon.me"
+         :src="props.active?tabBarIcon['me-select']:tabBarIcon.me"
         >
       </van-tabbar-item>
+       
     </van-tabbar>
   </div>
 </template>

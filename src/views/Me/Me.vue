@@ -5,9 +5,13 @@
     <van-list>
       <van-cell is-link>
         <template slot="default">
-          <div class="login_list">
+          <div class="login_list" @click="login()">
             <van-icon name="contact" size="30px"/>
-            <van-button   style="margin-left: 20px;border: 0px;">登录/注册</van-button>
+             <van-button style="margin-left: 20px;border: 0px;" >
+             登录
+             </van-button>
+           
+ 
           </div>
         </template>
       </van-cell>
@@ -25,7 +29,10 @@
         van_tabs_active: 0
       }
     },
-    methods: {}
+    methods: {
+      login(){
+     this.$router.push('/login')}
+    }
   }
 </script>
 
