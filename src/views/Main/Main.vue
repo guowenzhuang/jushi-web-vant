@@ -2,36 +2,36 @@
   <div id="main">
     <router-view/>
     <van-tabbar v-model="tabActive" route fixed>
-      <van-tabbar-item name="home" to="/main/home">
+      <van-tabbar-item name="home" to="/main/home"> 首页
         <img
           slot="icon"
           slot-scope="props"
           :src="props.active?tabBarIcon['home-select']:tabBarIcon.home"
         >
       </van-tabbar-item>
-      <van-tabbar-item name="plate" to="/main/plate">
+      <van-tabbar-item name="plate" to="/main/plate"> 板块
         <img
           slot="icon"
           slot-scope="props"
           :src="props.active?tabBarIcon['plate-select']:tabBarIcon.plate"
         >
       </van-tabbar-item>
-      <van-tabbar-item name="search" to="/main/search">
+      <van-tabbar-item name="search" to="/main/search"> 搜索
         <img
           slot="icon"
           slot-scope="props"
           :src="props.active?tabBarIcon['search-select']:tabBarIcon.search"
         >
       </van-tabbar-item>
-     
-      <van-tabbar-item name="me" to="/main/me">
+
+      <van-tabbar-item name="me" to="/main/me"> 我的
         <img
           slot="icon"
           slot-scope="props"
          :src="props.active?tabBarIcon['me-select']:tabBarIcon.me"
         >
       </van-tabbar-item>
-       
+
     </van-tabbar>
   </div>
 </template>

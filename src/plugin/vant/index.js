@@ -10,7 +10,10 @@ import {
   Image,
   Row, Col,
   PasswordInput, NumberKeyboard,
-  Notify
+  Notify,
+  Swipe, SwipeItem,
+  Lazyload,
+  Panel
 } from 'vant'
 import Vue from 'vue'
 
@@ -26,3 +29,6 @@ Vue.use(Tab).use(Tabs)
 Vue.use(Row).use(Col)
 Vue.use(PasswordInput).use(NumberKeyboard)
 Vue.use(Notify)
+Vue.use(Swipe).use(SwipeItem)
+Vue.use(Lazyload)
+Vue.use(Panel);
