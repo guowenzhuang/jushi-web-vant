@@ -13,7 +13,8 @@ import {
   Notify,
   Swipe, SwipeItem,
   Lazyload,
-  Panel
+  Panel,
+  Toast
 } from 'vant'
 import Vue from 'vue'
 
@@ -31,4 +32,5 @@ Vue.use(PasswordInput).use(NumberKeyboard)
 Vue.use(Notify)
 Vue.use(Swipe).use(SwipeItem)
 Vue.use(Lazyload)
-Vue.use(Panel);
+Vue.use(Panel)
+Vue.use(Toast)
