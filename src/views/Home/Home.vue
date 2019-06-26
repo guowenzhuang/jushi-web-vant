@@ -1,30 +1,71 @@
 <template>
-    <div id="home">
-        <van-tabs type="card" class="title">
-            <van-tab title="首页">
-            </van-tab>
-        </van-tabs>
-        <van-swipe :autoplay="3000">
-            <van-swipe-item class="swipeItem" v-for="(image, index) in homeSwipes" :key="index">
-                <img v-lazy="image" class="homeImage"/>
-            </van-swipe-item>
-        </van-swipe>
-        <van-list
-                v-model="plainArtice.loading"
-                :finished="plainArtice.finished"
-                finished-text="没有更多了"
+  <div id="home">
+    <van-tabs type="card" class="title">
+      <van-tab title="首页">
+      </van-tab>
+    </van-tabs>
+    <van-swipe :autoplay="3000">
+      <van-swipe-item class="swipeItem" v-for="(image, index) in homeSwipes" :key="index">
+        <van-image
+          class="homeImage"
+          lazy-load
+          :src="image"
         >
-            <van-panel class="plain-artice-panel" :title="item.sysUser.username" :status="item.plate.name"
-                       :key="item.id"
-                       v-for="item in plainArtice.data">
-                <div>
+          <template slot="loading">
+            <van-loading type="spinner" size="20"/>
+          </template>
+        </van-image>
+      </van-swipe-item>
+    </van-swipe>
+    <van-list
+      v-model="plainArtice.loading"
+      :finished="plainArtice.finished"
+      finished-text="没有更多了"
+    >
+      <van-cell
+        class="plain-artice-cell"
+        :key="item.id"
+        v-for="item in plainArtice.data"
+      >
+        <van-panel
+          slot="default"
+        >
+          <div slot="header" style="display: flex; justify-content:space-between;">
+            <div class="plain-artice-header">
+              <van-image
+                width="24"
+                lazy-load
+                :src="item.sysUser.imageUrl"
+              >
+                <template slot="error">
+                  <van-image
+                    width="24"
+                    src="https://i.loli.net/2019/06/26/5d12e7ea69d6285534.png"
+                  >
+                    <template slot="loading">
+                      <van-loading type="spinner" size="20"/>
+                    </template>
+                  </van-image>
+                </template>
+              </van-image>
+              <div>
+                &nbsp;
+                {{item.sysUser.username}}
+              </div>
+            </div>
+            <div style="float: right;color:red;">
+              {{item.plate.name}}
+            </div>
+          </div>
+          <div slot="default">
+            <div class="plain-artice-title">{{item.title}}</div>
+            <div>{{item.cover}}</div>
+          </div>
+        </van-panel>
+      </van-cell>
 
-                    <div class="plain-artice-title">{{item.title}}</div>
-                    <div>{{item.cover}}</div>
-                </div>
-            </van-panel>
-        </van-list>
-    </div>
+    </van-list>
+  </div>
 </template>
 
 <script>
@@ -51,14 +92,13 @@
         },
         homeSwipes:
           [
-            'https://img.yzcdn.cn/public_files/2017/09/05/3bd347e44233a868c99cf0fe560232be.jpg',
-            'https://img.yzcdn.cn/public_files/2017/09/05/c0dab461920687911536621b345a0bc9.jpg',
-            'https://img.yzcdn.cn/public_files/2017/09/05/4e3ea0898b1c2c416eec8c11c5360833.jpg'
+            'http://iph.href.lu/1280x790?text=巨石',
+            'http://iph.href.lu/1280x790?text=巨石',
+            'http://iph.href.lu/1280x790?text=巨石'
           ]
       }
     },
     created () {
-
       // 判断是否支持EventSource
       if (typeof (EventSource) !== 'undefined') {
         // 长连接方式
@@ -76,7 +116,6 @@
         plainArticeSource.onmessage = (event) => {
           let data = JSON.parse(event.data)
           data.createTime = moment.unix(data.createTime / 1000).format('YYYY-MM-DD')
-          console.log(data);
           this.plainArtice.data.push(data)
         }
       } else {
@@ -97,26 +136,33 @@
   }
 </script>
 
-<style lang="scss">
-    .title {
-        .van-tabs__nav--card {
-            margin: 0;
-        }
+<style lang="scss" scoped>
+  .title {
+    .van-tabs__nav--card {
+      margin: 0;
     }
+  }
 
-    .swipeItem {
-        text-align: center;
+  .swipeItem {
+    text-align: center;
 
-        .homeImage {
-            height: 25vh;
-        }
+    .homeImage {
+      height: 25vh;
     }
+  }
 
-    .plain-artice-title {
-        font-weight: bolder
-    }
+  .plain-artice-title {
+    font-weight: bolder
+  }
 
-    .plain-artice-panel {
-        margin-bottom: 50PX;
-    }
+  .plain-artice-cell {
+    margin-top: 1vh;
+  }
+
+  .plain-artice-header {
+    padding-top: 1PX;
+    display: flex;
+    align-items: center
+  }
+
 </style>

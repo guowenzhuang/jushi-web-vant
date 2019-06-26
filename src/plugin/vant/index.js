@@ -14,7 +14,9 @@ import {
   Swipe, SwipeItem,
   Lazyload,
   Panel,
-  Toast
+  Toast,
+  Card,
+  Loading
 } from 'vant'
 import Vue from 'vue'
 
@@ -34,3 +36,5 @@ Vue.use(Swipe).use(SwipeItem)
 Vue.use(Lazyload)
 Vue.use(Panel)
 Vue.use(Toast)
+Vue.use(Card)
+Vue.use(Loading);
