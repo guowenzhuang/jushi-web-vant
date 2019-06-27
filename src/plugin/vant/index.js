@@ -16,25 +16,31 @@ import {
   Panel,
   Toast,
   Card,
-  Loading
+  Loading,
+  GoodsAction,
+  GoodsActionIcon,
+  GoodsActionButton
 } from 'vant'
 import Vue from 'vue'
 
 Vue.use(Image)
-Vue.use(Field)
-Vue.use(Cell).use(CellGroup)
-Vue.use(Popup)
-Vue.use(Button)
-Vue.use(List)
-Vue.use(Icon)
-Vue.use(Tabbar).use(TabbarItem)
-Vue.use(Tab).use(Tabs)
-Vue.use(Row).use(Col)
-Vue.use(PasswordInput).use(NumberKeyboard)
-Vue.use(Notify)
-Vue.use(Swipe).use(SwipeItem)
-Vue.use(Lazyload)
-Vue.use(Panel)
-Vue.use(Toast)
-Vue.use(Card)
-Vue.use(Loading);
+  .use(Field)
+  .use(Cell).use(CellGroup)
+  .use(Popup)
+  .use(Button)
+  .use(List)
+  .use(Icon)
+  .use(Tabbar).use(TabbarItem)
+  .use(Tab).use(Tabs)
+  .use(Row).use(Col)
+  .use(PasswordInput).use(NumberKeyboard)
+  .use(Notify)
+  .use(Swipe).use(SwipeItem)
+  .use(Lazyload)
+  .use(Panel)
+  .use(Toast)
+  .use(Card)
+  .use(Loading)
+  .use(GoodsAction)
+  .use(GoodsActionIcon)
+  .use(GoodsActionButton)

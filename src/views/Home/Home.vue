@@ -1,77 +1,44 @@
 <template>
-  <div id="home">
-    <van-tabs type="card" class="title">
-      <van-tab title="首页">
-      </van-tab>
-    </van-tabs>
-    <van-swipe :autoplay="3000">
-      <van-swipe-item class="swipeItem" v-for="(image, index) in homeSwipes" :key="index">
-        <van-image
-          class="homeImage"
-          lazy-load
-          :src="image"
-        >
-          <template slot="loading">
-            <van-loading type="spinner" size="20"/>
-          </template>
-        </van-image>
-      </van-swipe-item>
-    </van-swipe>
-    <van-list
-      v-model="plainArtice.loading"
-      :finished="plainArtice.finished"
-      finished-text="没有更多了"
-    >
-      <van-cell
-        class="plain-artice-cell"
-        :key="item.id"
-        v-for="item in plainArtice.data"
-      >
-        <van-panel
-          slot="default"
-        >
-          <div slot="header" style="display: flex; justify-content:space-between;">
-            <div class="plain-artice-header">
-              <van-image
-                width="24"
-                lazy-load
-                :src="item.sysUser.imageUrl"
-              >
-                <template slot="error">
-                  <van-image
-                    width="24"
-                    src="https://i.loli.net/2019/06/26/5d12e7ea69d6285534.png"
-                  >
+    <div id="home">
+        <van-tabs type="card" class="title">
+            <van-tab title="首页">
+            </van-tab>
+        </van-tabs>
+        <van-swipe :autoplay="3000">
+            <van-swipe-item class="swipeItem" v-for="(image, index) in homeSwipes" :key="index">
+                <van-image
+                        class="homeImage"
+                        lazy-load
+                        :src="image"
+                >
                     <template slot="loading">
-                      <van-loading type="spinner" size="20"/>
+                        <van-loading type="spinner" size="20"/>
                     </template>
-                  </van-image>
-                </template>
-              </van-image>
-              <div>
-                &nbsp;
-                {{item.sysUser.username}}
-              </div>
-            </div>
-            <div style="float: right;color:red;">
-              {{item.plate.name}}
-            </div>
-          </div>
-          <div slot="default">
-            <div class="plain-artice-title">{{item.title}}</div>
-            <div>{{item.cover}}</div>
-          </div>
-        </van-panel>
-      </van-cell>
+                </van-image>
+            </van-swipe-item>
+        </van-swipe>
+        <van-list
+                v-model="plainArtice.loading"
+                :finished="plainArtice.finished"
+                finished-text="没有更多了"
+        >
+            <van-cell
+                    class="plain-artice-cell"
+                    :key="item.id"
+                    v-for="item in plainArtice.data"
+            >
+                <defaultArticle :artice="item"></defaultArticle>
+            </van-cell>
 
-    </van-list>
-  </div>
+        </van-list>
+    </div>
 </template>
 
 <script>
   import moment from 'moment'
   import _ from 'lodash'
   import qs from 'qs'
+  import defaultArticle from '@/components/defaultArticle'
 
   export default {
     name: 'Home',
@@ -87,8 +54,7 @@
           query: {
             page: 0,
             size: 5
-          },
-          plainArticeSource: null
+          }
         },
         homeSwipes:
           [
@@ -98,32 +64,27 @@
           ]
       }
     },
-    created () {
-      // 判断是否支持EventSource
-      if (typeof (EventSource) !== 'undefined') {
-        // 长连接方式
-        let query = qs.stringify(this.plainArtice.query)
-        let plainArticeSource = new EventSource('/api/article/stream/articleHomePage?' + query, { withCredentials: true })
-        // 打开调用
-        plainArticeSource.onopen = (event) => {
-          if (this.plainArtice.plainArticeSource != null) {
-            this.plainArtice.plainArticeSource.close()
-            return
-          }
-          this.plainArtice.plainArticeSource = plainArticeSource
+    methods: {
+      /**
+       * 普通文章查询
+       */
+      plainArticeQuery (params) {
+        // 判断是否支持EventSource
+        if (typeof (EventSource) !== 'undefined') {
+          // 长连接方式
+          this.plainArticeQueryEvent(params)
+        } else {
+          this.$notify('你的浏览时不支持EventSource将采用传统方式')
+          // 如果不支持采用传统的ajax
+          this.plainArticeQueryAxios(params)
         }
-        // 每次返回调用
-        plainArticeSource.onmessage = (event) => {
-          let data = JSON.parse(event.data)
-          data.createTime = moment.unix(data.createTime / 1000).format('YYYY-MM-DD')
-          this.plainArtice.data.push(data)
-        }
-      } else {
-        this.notify('你的浏览时不支持EventSource将采用传统方式')
-
-        // 如果不支持采用传统的ajax
+      },
+      /**
+       * 普通文章查询(axios方式)
+       */
+      plainArticeQueryAxios (params) {
         this.$axios.post('/api/article/articleHomePage', {
-          ...this.plainArtice.query
+          ...params
         })
           .then(res => {
             this.plainArtice.data = _.map(res, item => {
@@ -131,38 +92,55 @@
               return item
             })
           })
+      },
+      /**
+       * 普通文章查询(EventSource方式)
+       */
+      plainArticeQueryEvent (params) {
+        let query = qs.stringify(params)
+        let sourceBoolean = false
+        let plainArticeSource = new EventSource('/api/article/stream/articleHomePage?' + query, { withCredentials: true })
+        // 打开调用
+        plainArticeSource.onopen = (event) => {
+          if (sourceBoolean) {
+            plainArticeSource.close()
+            return
+          }
+          sourceBoolean = true
+        }
+        // 每次返回调用
+        plainArticeSource.onmessage = (event) => {
+          let data = JSON.parse(event.data)
+          data.createTime = moment.unix(data.createTime / 1000).format('YYYY-MM-DD')
+          this.plainArtice.data.push(data)
+        }
       }
+    },
+    created () {
+      this.plainArticeQuery(this.plainArtice.query)
+    },
+    components: {
+      defaultArticle
     }
   }
 </script>
 
-<style lang="scss" scoped>
-  .title {
-    .van-tabs__nav--card {
-      margin: 0;
+<style lang="scss">
+    .title {
+        .van-tabs__nav--card {
+            margin: 0;
+        }
     }
-  }
 
-  .swipeItem {
-    text-align: center;
+    .swipeItem {
+        text-align: center;
 
-    .homeImage {
-      height: 25vh;
+        .homeImage {
+            height: 25vh;
+        }
     }
-  }
 
-  .plain-artice-title {
-    font-weight: bolder
-  }
-
-  .plain-artice-cell {
-    margin-top: 1vh;
-  }
-
-  .plain-artice-header {
-    padding-top: 1PX;
-    display: flex;
-    align-items: center
-  }
-
+    .plain-artice-cell {
+        margin-top: 1vh;
+    }
 </style>
