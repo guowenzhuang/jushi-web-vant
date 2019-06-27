@@ -1,21 +1,21 @@
 <template>
   <div id="me">
-    <van-tabs type="card" sticky color="#1296db">
+    <van-tabs type="card"  class="title"  color="#ED6A0C">
       <van-tab title="我">
-        <van-list>
-          <van-cell is-link>
-            <template slot="default">
-              <div class="login_list" @click="login()">
-                <font-awesome-icon icon="user-secret" size="lg"/>
-                <van-button style="margin-left: 20px;border: 0px;font-size: 18px;">
-                  登录/注册
-                </van-button>
-              </div>
-            </template>
-          </van-cell>
-        </van-list>
       </van-tab>
     </van-tabs>
+    <van-list>
+      <van-cell is-link>
+        <template slot="default">
+          <div class="login_list" @click="login()">
+            <font-awesome-icon icon="user-secret" size="lg"/>
+            <van-button style="margin-left: 20px;border: 0px;font-size: 18px;">
+              登录/注册
+            </van-button>
+          </div>
+        </template>
+      </van-cell>
+    </van-list>
   </div>
 </template>
 

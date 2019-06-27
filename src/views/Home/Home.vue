@@ -1,6 +1,6 @@
 <template>
     <div id="home">
-        <van-tabs type="card" class="title">
+        <van-tabs type="card" class="title"  color="#ED6A0C">
             <van-tab title="首页">
             </van-tab>
         </van-tabs>
@@ -22,14 +22,13 @@
                 :finished="plainArtice.finished"
                 finished-text="没有更多了"
         >
-            <van-cell
-                    class="plain-artice-cell"
-                    :key="item.id"
-                    v-for="item in plainArtice.data"
-            >
-                <defaultArticle :artice="item"></defaultArticle>
-            </van-cell>
+            <transition-group name="van-slide-left">
 
+                <defaultArticle
+                        :artice="item"
+                        :key="item.id"
+                        v-for="(item,index) in plainArtice.data"/>
+            </transition-group>
         </van-list>
     </div>
 </template>
@@ -140,7 +139,4 @@
         }
     }
 
-    .plain-artice-cell {
-        margin-top: 1vh;
-    }
 </style>
