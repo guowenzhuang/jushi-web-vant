@@ -1,6 +1,7 @@
 <template>
-    <div id="plate">
+    <div id="plate" style="margin-bottom: 50px">
         <van-tabs
+                @change="plateChange"
                 background="#ED6A0C"
                 class="title"
                 title-active-color="#FFFFFF"
@@ -8,36 +9,71 @@
                 swipeable
                 animated
                 lazy-render>
-            <van-tab style="color:#ffffff" v-for="plate in plates" :key="plate.id" :title="plate.name">
+            <van-tab class="plate-tab" v-for="plate in plates" :key="plate.id"
+                     :title="plate.name">
+                <div style="color: red">
+                    <articeList url="/api/web/article/queryPageByPlate" :query="article.query"></articeList>
+                </div>
             </van-tab>
         </van-tabs>
     </div>
 </template>
 
 <script>
+  import articeList from '@/components/articeList'
+
   export default {
     name: 'Plate',
     data () {
       return {
-        plates: []
+        plates: [],
+        article: {
+          query: {
+            page: 0,
+            size: 9,
+            plateId: '',
+            order: 'weight'
+          }
+        }
       }
     },
     methods: {
+      /**
+       * 板块查询
+       * @param func
+       */
       plateQuery () {
-        this.$axios.get('/api/article/plate')
+        this.$axios.get('/api/web/plate/querySort')
           .then(res => {
             this.plates = res
+            this.plateChange(0, res[0].name)
           })
+      },
+      /**
+       * 板块更改事件
+       */
+      plateChange (index, title) {
+        this.article.query.page = 0
+        this.article.query.plateId = this.plates[index].id
       }
     },
     created () {
       this.plateQuery()
+    },
+    components: {
+      articeList
     }
   }
 </script>
 
 <style lang="scss">
-    .title {
+    #plate {
+        .van-tabs__line {
+            background-color: #ffffff;
+        }
 
+        .plate-tab {
+            color: #ffffff
+        }
     }
 </style>

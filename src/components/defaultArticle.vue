@@ -1,21 +1,21 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
     <div id="default-article">
-        <van-cell class="plain-artice-cell">
+        <van-cell class="plain-article-cell">
             <van-panel>
                 <template v-slot:header>
                     <div style="display: flex; justify-content:space-between;">
-                        <div class="plain-artice-header">
+                        <div class="plain-article-header">
                             <van-image
                                     width="24"
                                     lazy-load
-                                    :src="artice.sysUser.imageUrl"
+                                    :src="article.sysUser.imageUrl"
                             >
-                                <template slot="error">
+                                <template v-slot:error>
                                     <van-image
                                             width="24"
                                             src="https://i.loli.net/2019/06/26/5d12e7ea69d6285534.png"
                                     >
-                                        <template slot="loading">
+                                        <template v-slot:loading>
                                             <van-loading type="spinner" size="20"/>
                                         </template>
                                     </van-image>
@@ -23,18 +23,18 @@
                             </van-image>
                             <div>
                                 &nbsp;
-                                {{artice.sysUser.username}}
+                                {{article.sysUser.username}}
                             </div>
                         </div>
                         <div style="float: right;color:#ED6A0C;">
-                            {{artice.plate.name}}
+                            {{article.plate.name}}
                         </div>
                     </div>
                 </template>
                 <template v-slot:default>
                     <div>
-                        <div class="plain-artice-title">{{artice.title}}</div>
-                        <div class="van-ellipsis">{{artice.cover}}</div>
+                        <div class="plain-article-title">{{article.title}}</div>
+                        <div class="van-ellipsis">{{article.cover}}</div>
                     </div>
                 </template>
                 <template v-slot:footer>
@@ -43,14 +43,14 @@
                     <font-awesome-icon :icon="['far', 'thumbs-up']" size="lg"/>
                   </span>
                         <span>
-                    {{artice.likeCount==null?0:artice.likeCount}}
+                    {{article.likeCount==null?0:article.likeCount}}
                   </span>
                         &nbsp;
                         <span style="color: #FF976A;">
                     <font-awesome-icon :icon="['far', 'comment']" size="lg"/>
                   </span>
                         <span>
-                    {{artice.commentCount==null?0:artice.commentCount}}
+                    {{article.commentCount==null?0:article.commentCount}}
                   </span>
                     </div>
                 </template>
@@ -63,18 +63,18 @@
   export default {
     name: 'defaultArticle',
     props: {
-      artice: null
+      article: null
     }
   }
 </script>
 
 <style lang="scss">
     #default-article {
-        .plain-artice-title {
+        .plain-article-title {
             font-weight: bolder
         }
 
-        .plain-artice-header {
+        .plain-article-header {
             padding-top: 1PX;
             display: flex;
             align-items: center
@@ -88,7 +88,7 @@
             border: none;
         }
 
-        .plain-artice-cell {
+        .plain-article-cell {
             margin-top: 1vh;
         }
     }

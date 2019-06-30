@@ -19,7 +19,9 @@ import {
   Loading,
   GoodsAction,
   GoodsActionIcon,
-  GoodsActionButton
+  GoodsActionButton,
+  PullRefresh,
+  Search
 } from 'vant'
 import Vue from 'vue'
 
@@ -44,3 +46,5 @@ Vue.use(Image)
   .use(GoodsAction)
   .use(GoodsActionIcon)
   .use(GoodsActionButton)
+  .use(PullRefresh)
+  .use(Search)

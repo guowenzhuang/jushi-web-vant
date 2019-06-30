@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Notify } from 'vant'
+import store from '@/store/jushi/modules/auth'
 
 // 记录和显示错误
 function errorLog (err) {
@@ -18,11 +19,11 @@ function errorLog (err) {
 // 创建一个 axios 实例
 const service = axios.create({
   baseURL: process.env.VUE_APP_API,
-  timeout: 5000, // 请求超时时间
+  timeout: 5000 // 请求超时时间
 })
 // 请求的拦截器
 service.interceptors.request.use(function (config) {
-  const token = localStorage.getItem('access_token')
+  const token = store.state.token.access_token
   if (token != null) {
     config.params = {
       access_token: token,
