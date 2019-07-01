@@ -6,7 +6,7 @@
 
 - Vuecli3+Vuex+VueRoute
 
-- [VantUi]([https://youzan.github.io/vant/#/zh-CN/intro](https://youzan.github.io/vant/#/zh-CN/intro)           
+- [VantUi](https://youzan.github.io/vant/#/zh-CN/intro)        
 
 ```
 jushi-web-antd
