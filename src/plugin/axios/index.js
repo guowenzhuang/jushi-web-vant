@@ -22,16 +22,18 @@ const service = axios.create({
   timeout: 5000 // 请求超时时间
 })
 // 请求的拦截器
-service.interceptors.request.use(function (config) {
-  const token = store.state.token.access_token
-  if (token != null) {
-    config.params = {
-      access_token: token,
-      ...config.params
+service.interceptors.request.use(config => {
+  const token = store.state.token
+  console.log(config)
+  // token不为null并且不是登录
+  if (token != null && config.url !== '/api/uaa/authorize') {
+    config.headers = {
+      Authorization: `Bearer ${token}`,
+      ...config.headers
     }
   }
   return config
-}, function (error) {
+}, error => {
   return Promise.reject(error)
 })
 

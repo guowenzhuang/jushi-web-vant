@@ -14,7 +14,7 @@
                         label="用户名:"
                         placeholder="手机号/邮箱"></van-field>
                 <van-field
-                        v-model="loginparams.oldPassword"
+                        v-model="loginparams.password"
                         type="password"
                         label="密码:"
                         placeholder="密码"></van-field>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import { mapState, mapMutations } from 'vuex'
+  import { mapState } from 'vuex'
 
   export default {
     name: 'Login',
@@ -39,9 +39,7 @@
       return {
         loginparams: {
           username: 'admin',
-          oldPassword: 'admin',
-          grant_type: 'password',
-          password: ''
+          password: 'password'
         }
       }
     },
@@ -56,18 +54,14 @@
        */
       login () {
         // 加密密码
-        this.loginparams.password = this.encryptString(this.loginparams.oldPassword)
         this.$axios({
-          url: '/api/uaa/oauth/token',
+          url: '/api/uaa/authorize',
           method: 'post',
-          headers: {
-            'Authorization': 'Basic d2ViOndlYg=='
-          },
-          params: {
+          data: {
             ...this.loginparams
           }
         }).then(res => {
-          this.$store.commit('modules/auth/login', res)
+          this.$store.commit('modules/auth/login', res.token)
           this.getUserInfo()
         })
       },
@@ -76,7 +70,11 @@
        */
       getUserInfo () {
         // 获取用户信息
-        this.$axios('/api/admin/user/getCurrentUser')
+        this.$axios('/api/admin/user/getCurrentUser').then(
+          res => {
+            this.$store.commit('modules/user/setUserInfo', res);
+          }
+        )
       }
     }
   }
