@@ -14,24 +14,19 @@
 
         <van-swipe :autoplay="3000">
             <van-swipe-item class="swipeItem" v-for="(image, index) in homeSwipes" :key="index">
-                <van-image
-                        class="homeImage"
-                        lazy-load
-                        :src="image"
-                >
-                    <template slot="loading">
-                        <van-loading type="spinner" size="20"/>
-                    </template>
-                </van-image>
+                <JushiImg
+                imgHeight="20vh"
+                :imgUrl="image"/>
             </van-swipe-item>
         </van-swipe>
-        <articeList  url="/api/web/article/page" :query="plainArtice.query"></articeList>
+        <articeList url="/api/web/article/page" :query="plainArtice.query"></articeList>
     </div>
 </template>
 
 <script>
 
-  import articeList from '@/components/articeList'
+  import articeList from '@/components/Article/ArticeList'
+  import JushiImg from '@/components/Img/JushiImg'
 
   export default {
     name: 'Home',
@@ -52,7 +47,7 @@
             'http://iph.href.lu/1280x790?text=巨石',
             'http://iph.href.lu/1280x790?text=巨石',
             'http://iph.href.lu/1280x790?text=巨石'
-          ],
+          ]
       }
     },
     methods: {},
@@ -60,7 +55,8 @@
 
     },
     components: {
-      articeList
+      articeList,
+      JushiImg
     }
   }
 </script>
@@ -75,10 +71,8 @@
     .swipeItem {
         text-align: center;
 
-        .homeImage {
-            height: 25vh;
-        }
     }
+
     #home .van-tabs__line {
         display: none;
     }

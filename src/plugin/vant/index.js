@@ -21,7 +21,10 @@ import {
   GoodsActionIcon,
   GoodsActionButton,
   PullRefresh,
-  Search
+  Search,
+  NavBar,
+  ActionSheet,
+  Dialog
 } from 'vant'
 import Vue from 'vue'
 
@@ -48,3 +51,6 @@ Vue.use(Image)
   .use(GoodsActionButton)
   .use(PullRefresh)
   .use(Search)
+  .use(NavBar)
+  .use(ActionSheet)
+  .use(Dialog)

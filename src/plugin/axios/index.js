@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Notify } from 'vant'
-import store from '@/store/jushi/modules/auth'
+import Cookies from 'js-cookie'
 
 // 记录和显示错误
 function errorLog (err) {
@@ -23,10 +23,9 @@ const service = axios.create({
 })
 // 请求的拦截器
 service.interceptors.request.use(config => {
-  const token = store.state.token
-  console.log(config)
-  // token不为null并且不是登录
-  if (token != null && config.url !== '/api/uaa/authorize') {
+  const token = Cookies.get('token')
+  // token不为null
+  if (token != null && token !== '') {
     config.headers = {
       Authorization: `Bearer ${token}`,
       ...config.headers

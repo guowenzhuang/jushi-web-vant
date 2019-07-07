@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  import defaultArticle from '@/components/defaultArticle'
+  import defaultArticle from '@/components/Article/DefaultArticle'
   import moment from 'moment'
   import _ from 'lodash'
   import qs from 'qs'
@@ -34,8 +34,8 @@
   export default {
     name: 'articeList',
     props: {
-      url: null,
-      query: {}
+      url: String,
+      query: Object
     },
     data () {
       return {

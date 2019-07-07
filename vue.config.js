@@ -1,5 +1,6 @@
 const baseUrl = '/'
 module.exports = {
+  runtimeCompiler: true,
   // 根据你的实际情况更改这里
   baseUrl: baseUrl,
   productionSourceMap: false, // 生产环境是否生成 SourceMap
@@ -15,7 +16,7 @@ module.exports = {
         changeOrigin: true
       }
     },
-     disableHostCheck: true
+    disableHostCheck: true
 
   },
   publicPath: process.env.NODE_ENV === 'codingme' ? '/jushi-web-vant/dist' : '/'

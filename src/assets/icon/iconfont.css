@@ -1,0 +1,33 @@
+@font-face {font-family: "jushi-icon";
+  src: url('iconfont.eot?t=1562341182483'); /* IE9 */
+  src: url('iconfont.eot?t=1562341182483#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAScAAsAAAAACVwAAARQAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDKgqGAIR+ATYCJAMUCwwABCAFhG0HSxsFCMgehXHDfWAylMXk/i2Sz/eb9ndmIKVQF7ZqHhnSKDmUNU37xEQ+35cS/3Xbd/cnDjCiKEw4aPITTTBMKSn/eP3/53J683kWzt/gwFK60RhT57S2BZhgQGNMXECBFlli2kM2Zb5iGSrvPA0EIMtQgmx9IzOQCOgkAiCXy2mFlDgICIeQzJaWlQVyQyS1U+kbAM423yc/qiIBlNhBZ04cvQ50fPjpHnbs/2NWlAvH9+cDMFgHMEAJQABytgYcmEuUYORZrqABIDEuhZ9SSz/d8///BLtbdS0GifzhAQKGIkAmUEMYITuSAvwEwQbjEtjAwHg32EDBeA+onodBVCtkgAL4HSArqCnN+EWU6Wfyqwrzc8Iiw/aHPfReBrv6/frwB99Np1e8s3z8trywG25JopfeqoSffjtZwtqZqaK1dz2o3fbYaY8UOG65Jv7CW2sVeu2HvQq77HJFOf3SJKq8/HE2Ux6+PfHi64pmZHrJHTkyu/65PvmFZ3ZR+aa7CJNPu0hOvDjRefvphfzC+PjTLpD3f/TR3McfzyuZDz6Y+fDD2Rxceuvpt6c20DHrjRrOItr9jhr3/OiDmQ+OzX744fys8TFFPrzTBx/IH33UVHEsMVBjSQypDiRudIckWnosRtylFYkVl7JEdmlcYpyIlb6bGKhu1dWgup61Qt2z5da00ejKL93OtLGf+6AtL26fH/N+7ftZwfPfnvAUvh7dWG/pGrfeOCh7koPJHnnwRmv8cEt9Y/QbBZ6Jt3N79u9Vfr9GCxWv7gh23C2G8mv+Thv7CSMDubXb5++qig6e35M72N8NTe+kePSUl/XK3uKJszDfTn3ooVOllvYpsGK+oFp28Fee+rJ4VKB7c/ZS8YynHz+LMkpRjs163HYtJzsnUU4dRMf7dNA6gILd0LBEfv99nz3th+WJ9eGfwmfnJ5d+5g+dnfspYn3k2+9OfxUDu7Fdd3IK5ykn1+0YI4M2EgyiAfD//yvGjrmAfrtJ1YP08X/SZah+YgbXI1v+khQBAPBp7zltULed8u+gXFv5v7EVQZA1czV1ijXVA1WHChCAaOJdj1GAzNzA/yUDxPhqP5b4byNFSOIDUCHSgZHkoAJZAiJFDVhI2kFWrH+9IpaBIRUKoMhOBUSUu4GK8DQwUd5EBfJLECX4EyyiwkA2l9gdFXlxyd0Gt5rcodr2qy677te425Rt+RR37vZajVhteHPc2HKF1cqyijzdz/3c2MecrT3OKtPUVM3QfWpfdR73enU1YOhubjfLNk0z0FRerrW9qMyu+yDrZuCsTJyDymY/lYudzk9TnU1y8fkpnNNuXlYG0nQmP4czbHF1r6pUpmINtN/gX6vpufTfsodTFZNJq8dpDDofVR/4OC9L6FSB9mFunJ2pzOYWsYAm5aSdtq6h7Pgm32us/OW2pDeKoYQRgYjEAmXoDm6z+j27rS5hU/dxyqMh+1xWXfhLAQ==') format('woff2'),
+  url('iconfont.woff?t=1562341182483') format('woff'),
+  url('iconfont.ttf?t=1562341182483') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1562341182483#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.jushi-icon {
+  font-family: "jushi-icon" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.jushi-icon-wodebankuai:before {
+  content: "\e6b0";
+}
+
+.jushi-icon-home:before {
+  content: "\e6af";
+}
+
+.jushi-icon-me:before {
+  content: "\e65a";
+}
+
+.jushi-icon-xiaoxi-:before {
+  content: "\e600";
+}
+
