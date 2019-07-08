@@ -8,7 +8,7 @@
                             <JushiImg
                                     :imgWidth="24"
                                     :imgUrl="article.sysUser.imageUrl"
-                                    errorUrl="https://i.loli.net/2019/06/26/5d12e7ea69d6285534.png"
+                                    errorUrl="/img/avatar/defaultAvatar.png"
                             />
                             <div>
                                 &nbsp;
