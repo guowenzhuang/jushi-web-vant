@@ -1,0 +1,2 @@
+NODE_ENV=APP
+BASE_URL = './'

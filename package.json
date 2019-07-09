@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "buildApp": "vue-cli-service build --mode app",
     "buildPages": "vue-cli-service build --mode codingme"
   },
   "dependencies": {
