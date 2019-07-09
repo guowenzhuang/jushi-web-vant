@@ -188,6 +188,8 @@
                 this.isComment = false
                 this.commentLeftSpan = 13
                 this.commentRightSpan = 11
+                this.emojiDisplay = 'none'
+                this.emojiIcon = 'smile-o'
             }
         },
         created () {
