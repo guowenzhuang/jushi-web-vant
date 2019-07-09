@@ -1,11 +1,11 @@
 <template xmlns:v-solt="http://www.w3.org/1999/xhtml" xmlns:v-slot="http://www.w3.org/1999/xhtml">
-  <div id="articleDetails">
+  <div id="articleDetails" style="height: 100%">
     <van-nav-bar
       title="文章详情页"
       left-arrow
       @click-left="$router.back(-1)"
     />
-    <div @click="disableComment" style="padding: 10px 8px 0 8px;" class="webfont">
+    <div @click="disableComment" style="padding: 10px 8px 0 8px;height: 100%" class="webfont">
       <van-row type="flex" gutter="8">
         <van-col>
           <JushiImg
@@ -28,13 +28,14 @@
           </p>
         </van-col>
       </van-row>
-      <van-row type="flex" gutter="8">
-        <van-col>
+      <van-row style="height: 100%" gutter="8">
+        <van-col span="24">
           <p v-html="article.content">
           </p>
         </van-col>
       </van-row>
     </div>
+
 
     <div
       class="fixedComment">
@@ -208,7 +209,7 @@
   .fixedComment {
     position: fixed;
     bottom: 0;
-    padding: 8px 20px 8px 8px;
+    padding: 0px 0px 0px 8px;
     background-color: rgb(255, 255, 255);
     width: 100%;
     display: block;
