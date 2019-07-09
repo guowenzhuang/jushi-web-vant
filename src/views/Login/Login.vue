@@ -20,8 +20,10 @@
                         placeholder="用户名"></van-field>
                 <van-field
                         v-model="loginparams.oldPassword"
-                        type="password"
                         label="密码:"
+                        :type="showPassword"
+                        :right-icon="passwordIcon"
+                        @click-right-icon="passwordIconClick"
                         placeholder="密码"></van-field>
             </van-col>
         </van-row>
@@ -56,7 +58,9 @@
         loginparams: {
           username: '',
           oldPassword: ''
-        }
+        },
+        passwordIcon: 'closed-eye',
+        showPassword: 'password'
       }
     },
     computed: {
@@ -103,6 +107,21 @@
             this.$router.push('/main/home')
           }
         )
+      },
+      /**
+       * 密码框,文本 切换
+       */
+      passwordIconClick () {
+        if (this.passwordIcon === 'closed-eye') {
+          this.passwordIcon = 'eye-o'
+        } else {
+          this.passwordIcon = 'closed-eye'
+        }
+        if (this.showPassword === 'password') {
+          this.showPassword = 'text'
+        } else {
+          this.showPassword = 'password'
+        }
       }
     }
   }

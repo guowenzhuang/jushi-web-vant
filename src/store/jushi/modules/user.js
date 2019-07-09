@@ -1,7 +1,7 @@
 export default {
   namespaced: true,
   state: {
-    info: {}
+    info: null
   },
   mutations: {
     setUserInfo (state, data) {
