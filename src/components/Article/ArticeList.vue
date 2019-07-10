@@ -11,7 +11,7 @@
                     loading-text="加载中"
                     v-model="plainArtice.loading"
                     :finished="plainArtice.finished"
-                    :finished-text="plainArtice.data.length==0?'暂无数据':'亲,已经到底部了哦'"
+                    :finished-text="plainArtice.data.length==0?'暂无文章':'亲,已经到底部了哦'"
             >
                 <transition-group name="van-slide-left">
 
@@ -43,12 +43,14 @@
          * 普通文章
          */
         plainArtice: {
+          // 最新data
           data: [],
           loading: false,
           finished: false,
+          // 这一次请求之前的data
           beforeData: []
         },
-        pullRefreshLoading: false,
+        pullRefreshLoading: false
       }
     },
     methods: {

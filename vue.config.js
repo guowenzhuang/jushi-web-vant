@@ -11,7 +11,7 @@ module.exports = {
     proxy: {
       // 请求到 '/device' 下 的请求都会被代理到 target： http://debug.xxx.com 中
       '/api/*': {
-        target: 'http://guowenzhuang.notr.tech:10000/',
+        target: 'http://127.0.0.1:8001/',
         secure: false, // 接受 运行在 https 上的服务
         changeOrigin: true
       }
