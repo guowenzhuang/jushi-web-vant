@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Notify } from 'vant'
-import store from '@/store/jushi/modules/auth'
+import Cookies from 'js-cookie'
 
 // 记录和显示错误
 function errorLog (err) {
@@ -22,16 +22,17 @@ const service = axios.create({
   timeout: 5000 // 请求超时时间
 })
 // 请求的拦截器
-service.interceptors.request.use(function (config) {
-  const token = store.state.token.access_token
-  if (token != null) {
-    config.params = {
-      access_token: token,
-      ...config.params
+service.interceptors.request.use(config => {
+  const token = Cookies.get('token')
+  // token不为null
+  if (token != null && token !== '') {
+    config.headers = {
+      Authorization: `Bearer ${token}`,
+      ...config.headers
     }
   }
   return config
-}, function (error) {
+}, error => {
   return Promise.reject(error)
 })
 

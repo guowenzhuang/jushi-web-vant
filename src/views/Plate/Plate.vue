@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import articeList from '@/components/articeList'
+  import articeList from '@/components/Article/ArticeList'
 
   export default {
     name: 'Plate',

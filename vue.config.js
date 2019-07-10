@@ -1,5 +1,6 @@
 const baseUrl = '/'
 module.exports = {
+  runtimeCompiler: true,
   // 根据你的实际情况更改这里
   baseUrl: baseUrl,
   productionSourceMap: false, // 生产环境是否生成 SourceMap
@@ -10,14 +11,14 @@ module.exports = {
     proxy: {
       // 请求到 '/device' 下 的请求都会被代理到 target： http://debug.xxx.com 中
       '/api/*': {
-        target: 'http://localhost:8001',
+        target: 'http://127.0.0.1:8001/',
         secure: false, // 接受 运行在 https 上的服务
         changeOrigin: true
       }
     },
-     disableHostCheck: true
+    disableHostCheck: true
 
   },
-  publicPath: process.env.NODE_ENV === 'codingme' ? '/jushi-web-vant/dist' : '/'
+  publicPath: process.env.BASE_URL
 
 }

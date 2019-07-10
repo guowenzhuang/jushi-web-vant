@@ -14,6 +14,8 @@
         <div class="search">
             <form action="/">
                 <van-search
+                        :clearable="false"
+                        shape="round"
                         v-model="article.query.searchContent"
                         placeholder="请输入搜索关键词"
                         show-action
@@ -29,15 +31,15 @@
                     v-show="isSearch"
                     url="/api/web/article/search"
                     :query="article.query"></articeList>
-        <div v-show="!isSearch" style="display:flex; justify-content: center;">
-            <h3>请输入你要搜索的内容</h3>
-        </div>
+            <div v-show="!isSearch" style="display:flex; justify-content: center;">
+                <h3>请输入你要搜索的内容</h3>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-  import articeList from '@/components/articeList'
+  import articeList from '@/components/Article/ArticeList'
 
   export default {
     name: 'Search',

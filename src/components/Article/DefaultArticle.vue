@@ -1,26 +1,15 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
-    <div id="default-article">
+    <div id="default-article" @click="showArticle">
         <van-cell class="plain-article-cell">
             <van-panel>
                 <template v-slot:header>
                     <div style="display: flex; justify-content:space-between;">
                         <div class="plain-article-header">
-                            <van-image
-                                    width="24"
-                                    lazy-load
-                                    :src="article.sysUser.imageUrl"
-                            >
-                                <template v-slot:error>
-                                    <van-image
-                                            width="24"
-                                            src="https://i.loli.net/2019/06/26/5d12e7ea69d6285534.png"
-                                    >
-                                        <template v-slot:loading>
-                                            <van-loading type="spinner" size="20"/>
-                                        </template>
-                                    </van-image>
-                                </template>
-                            </van-image>
+                            <JushiImg
+                                    :imgWidth="24"
+                                    :imgUrl="article.sysUser.imageUrl"
+                                    errorUrl="/img/avatar/defaultAvatar.png"
+                            />
                             <div>
                                 &nbsp;
                                 {{article.sysUser.username}}
@@ -60,10 +49,25 @@
 </template>
 
 <script>
+  import JushiImg from '@/components/Img/JushiImg'
+
   export default {
     name: 'defaultArticle',
     props: {
-      article: null
+      article: Object
+    },
+    methods: {
+      showArticle () {
+        this.$router.push({
+          path: '/article',
+          query: {
+            articleId: this.article.id
+          }
+        })
+      }
+    },
+    components: {
+      JushiImg
     }
   }
 </script>

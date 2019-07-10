@@ -15,18 +15,16 @@ jushi-web-antd
 | 
 ----assept                    资源文件
 |
-----components                组件
+----components                组件
 |
-----plugin                    依赖插件
+----plugin                    依赖插件
 |
-----store                     Vuex数据管理         
+----store                     Vuex数据管理         
 |
-----views                     页面
+----views                     页面
 ```
 
 文件目录可以参考 [https://cli.vuejs.org/zh/](https://cli.vuejs.org/zh/)
-
-
 
 ## 运行
 
@@ -44,16 +42,6 @@ npm run serve
 
 ## TODO
 
-- 注册页面
-
 - 热门贴 置顶帖
 
-- 登录功能
-
-- 获取用户信息
-
-
-
-
-
-
+- 未集成表情输入

@@ -1,3 +1,4 @@
+
 const files = require.context('./modules', false, /\.js$/)
 const modules = {}
 
@@ -8,4 +9,5 @@ files.keys().forEach(key => {
 export default {
   namespaced: true,
   modules
+
 }
