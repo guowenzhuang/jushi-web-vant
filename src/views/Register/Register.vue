@@ -86,6 +86,9 @@
           } else { // 注册失败
             this.$toast.fail(res.message)
           }
+        }).catch(res => {
+          this.loginLoading = false
+          this.$toast.fail('注册失败 换个用户名试试')
         })
       },
       // 登录
