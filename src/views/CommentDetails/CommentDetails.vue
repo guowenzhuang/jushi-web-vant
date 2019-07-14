@@ -144,9 +144,7 @@
             this.comment.content = ''
             this.$toast.success('评论成功')
             res.data.sysUser.username = this.user.info.username
-            // FIXME 如果是回复的孙子级别会显示回复祖先级别
-            // 因为他之会推动到直属级别
-            // this.$refs.commentRef.pushComment(res.data)
+            this.$refs.commentRef.pushComment(res.data)
           } else {
             this.$toast.fail(res.message)
           }

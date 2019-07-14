@@ -7,11 +7,13 @@
                     v-for="(item) in childComment">
 
                 <defaultComment
+                        ref="commenetRef"
                         :parent="comment"
                         :comment="item"
 
                 />
                 <CommentDetailsList
+                        ref="commentDetailsRef"
                         v-if="item.children!=null"
                         :comment="item"
                         :childComment="item.children"
@@ -52,7 +54,9 @@
       },
       // 增加一条评论数据
       pushComment (comment) {
-        this.childComment.unshift(comment)
+        // FIXME 如果是回复的孙子级别会显示回复祖先级别
+        // FIXME 因为他之会推动到直属级别
+        // this.childComment.unshift(comment)
       },
       /**
        * 子级评论查询

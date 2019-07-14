@@ -39,6 +39,11 @@
                         <div v-for="child in comment.popularChildren" :key="child.id">
                             <div style="display: flex;">
                                 {{child.sysUser.username|userNameFilter(child.sysUser.id,article)}}：
+                                <div v-if="child.replyUser!=null">
+                                    回复 <a href="javascript:void(0)" style="color: #1989FA">
+                                    {{child.replyUser.username}}：
+                                </a>
+                                </div>
                                 <div style="color:#7D7E80 " v-html="child.content"></div>
                             </div>
                         </div>
