@@ -23,6 +23,7 @@
   import _ from 'lodash'
   import qs from 'qs'
   import moment from 'moment'
+  import dateUtil from '@/util/DateUtil.js'
 
   export default {
     name: 'CommentList',
@@ -49,7 +50,6 @@
     methods: {
       // 增加一条评论数据
       pushComment (comment) {
-        comment.createTime = moment.unix(comment.createTime / 1000).format('YYYY-MM-DD HH:mm:ss')
         this.plainComment.data.unshift(comment)
       },
       /**
@@ -91,10 +91,7 @@
           }
         })
           .then(res => {
-            this.plainArtice.data = _.map(res, item => {
-              item.createTime = moment.unix(item.createTime / 1000).format('YYYY-MM-DD HH:mm:ss')
-              return item
-            })
+            this.plainArtice.data = res
             if (_.isFunction(func)) {
               func()
             }
@@ -119,7 +116,6 @@
             }
             return
           }
-          data.createTime = moment.unix(data.createTime / 1000).format('YYYY-MM-DD HH:mm:ss')
           this.plainComment.data.push(data)
           if (!_.isEmpty(event.lastEventId)) {
             plainCommentSource.close()
