@@ -31,12 +31,12 @@
         <div style="padding:0 5px;">
             <van-row type="flex" justify="center" style="margin-top: 8px;">
                 <van-col span="24">
-                    <van-button type="info" @click="login" block>登录</van-button>
+                    <van-button :loading="loginLoading" type="info" @click="login" block>登录</van-button>
                 </van-col>
             </van-row>
             <van-row type="flex" justify="center" style="margin-top: 8px;">
                 <van-col span="12">
-                    <a style="color: #969799;" href="javascript:void(0)">忘记密码</a>
+                    <a @click="$router.push('/updatePassword')" style="color: #969799;" href="javascript:void(0)">忘记密码</a>
                 </van-col>
                 <van-col span="12">
                     <a @click="$router.push('/register')" href="javascript:void(0)"
@@ -60,7 +60,8 @@
           oldPassword: ''
         },
         passwordIcon: 'closed-eye',
-        showPassword: 'password'
+        showPassword: 'password',
+        loginLoading: false
       }
     },
     computed: {
@@ -81,6 +82,7 @@
           this.$toast('请输入密码')
           return
         }
+        this.loginLoading = true
         // 加密密码
         let password = this.encryptString(this.loginparams.oldPassword)
         this.$axios({
@@ -91,9 +93,13 @@
             password: password
           }
         }).then(res => {
+          this.loginLoading = false
           this.$store.commit('modules/auth/login', res.token)
           Cookies.set('token', res.token)
           this.getUserInfo()
+        }).catch(res => {
+          this.loginLoading = false
+          this.$toast.fail('登录失败请检查用户名和密码是否正确')
         })
       },
       /**

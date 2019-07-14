@@ -25,6 +25,14 @@ export default new Router({
       component: () => import('@/views/Register')
     },
     /**
+     *  修改密码
+     */
+    {
+      path: '/updatePassword',
+      name: 'updatePassword',
+      component: () => import('@/views/UpdatePassword')
+    },
+    /**
      * spa页面
      */
     {
