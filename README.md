@@ -29,7 +29,7 @@
 
 启动后端
 
-后端链接: [https://github.com/guowenzhuang/jushi](https://github.com/guowenzhuang/jushi-web-vant)
+后端链接: [https://github.com/guowenzhuang/jushi](https://github.com/guowenzhuang/jushi)
 
 
 安装依赖项 
