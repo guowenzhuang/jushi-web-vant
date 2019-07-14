@@ -27,7 +27,7 @@
 
 ## 🏁 安装 <a name = "run"></a>
 
-启动后端端
+启动后端
 
 后端链接: [https://github.com/guowenzhuang/jushi](https://github.com/guowenzhuang/jushi-web-vant)
 
