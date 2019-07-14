@@ -1,45 +1,20 @@
-<template xmlns:v-solt="http://www.w3.org/1999/xhtml" xmlns:v-slot="http://www.w3.org/1999/xhtml">
-    <div id="articleDetails" style="height: 100%">
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+    <div id="commentDetails" style="height: 100%">
         <van-nav-bar
-                title="文章详情页"
+                title="评论详情页"
                 left-arrow
                 @click-left="$router.back(-1)"
         />
         <div @click="disableComment" style="padding: 10px 8px 0 8px;height: 100%">
-            <van-row type="flex" gutter="8">
-                <van-col>
-                    <JushiImg
-                            imgFit="fill"
-                            imgWidth="30"
-                            :imgUrl="article.sysUser.imageUrl"
-                            errorUrl="/img/avatar/defaultAvatar.png"
-                    />
-                </van-col>
-                <van-col>
-                    <div>
-                        <span>{{article.sysUser.username}}</span>
-                    </div>
-                </van-col>
-            </van-row>
-            <van-row type="flex" gutter="8">
-                <van-col>
-                    <p style="font-size: 30px;">
-                        {{article.title}}
-                    </p>
-                </van-col>
-            </van-row>
-            <van-row gutter="8">
-                <van-col span="24">
-                    <p v-html="article.content">
-                    </p>
-                </van-col>
-            </van-row>
-            <div>
-                <commentList ref="commentRef" url="/api/web/comment/queryPageArticle" :query="CommentQuery"
-                             style="height: 100%"/>
+            <defaultComment :isRightIcon="false" :comment="commentAncestor"/>
+            <div style="margin: 12px 0 44px;">
+                <commentDetailsList
+                        ref="commentRef"
+                        v-if="commentAncestor.id!=null"
+                        class="commentContent"
+                        :comment="commentAncestor"></commentDetailsList>
             </div>
         </div>
-
         <div
                 class="fixedComment">
             <van-row type="flex" justify="center" align="center">
@@ -51,6 +26,7 @@
                         <van-col span="24">
                             <form action="/">
                                 <van-search
+                                        ref="commentInputRef"
                                         @focus="enableComment"
                                         :clearable="false"
                                         shape="round"
@@ -71,13 +47,13 @@
                         <van-col span="8" style="color: #FF976A;">
                             <font-awesome-icon style="font-size: 22px" :icon="['far', 'thumbs-up']"/>
                             <span>
-                {{article.likeCount==null?0:article.likeCount}}
+                {{commentAncestor.likeCount==null?0:commentAncestor.likeCount}}
               </span>
                         </van-col>
                         <van-col span="8" style="color: #FF976A;">
                             <font-awesome-icon style="font-size: 22px" :icon="['far', 'comment']" size="lg"/>
                             <span>
-                {{article.commentCount==null?0:article.commentCount}}
+                {{commentAncestor.commentCount==null?0:commentAncestor.commentCount}}
               </span>
                         </van-col>
                     </van-row>
@@ -101,30 +77,28 @@
 </template>
 
 <script>
-  import JushiImg from '@/components/Img/JushiImg'
   import { mapState } from 'vuex'
-  // 评论list组件
-  import commentList from '@/components/Comment/CommentList'
-
+  import JushiImg from '@/components/Img/JushiImg'
+  import defaultComment from '@/components/Comment/DefaultComment'
+  import commentDetailsList from '@/components/Comment/CommentDetailsList'
   // emoji表情插件
   import VEmojiPicker from 'v-emoji-picker'
   import packData from 'v-emoji-picker/data/emojis.json'
 
   export default {
-    name: 'ArticleDetails',
+    name: 'CommentDetails',
     data () {
       return {
-        article: {
+        commentAncestor: {
           sysUser: {}
         },
-        CommentQuery: {
-          page: 0,
-          size: 9,
-          articleId: '',
-          order: 'createTime'
-        },
         comment: {
-          content: ''
+          // 评论内容
+          content: '',
+          // 祖先评论id
+          ancestorId: '',
+          // 父级评论id
+          parentId: ''
         },
         pack: packData,
         emojiDisplay: 'none',
@@ -132,7 +106,7 @@
         // 是否评论 (评论显示状态控制)
         isComment: false,
         commentLeftSpan: 13,
-        commentRightSpan: 11
+        commentRightSpan: 11,
       }
     },
     computed: {
@@ -158,13 +132,13 @@
           })
           return
         }
-        let content = this.comment.content
         const userId = this.user.info.id
-        const articleId = this.article.id
+        const articleId = this.commentAncestor.article.id
         this.$axios.post('/api/web/comment/issueComment', {
           articleId: articleId,
           sysUserId: userId,
-          content: content
+          ...this.comment
+
         }).then(res => {
           if (res.flag) {
             this.comment.content = ''
@@ -208,21 +182,32 @@
         this.commentRightSpan = 11
         this.emojiDisplay = 'none'
         this.emojiIcon = 'smile-o'
+        this.comment.parentId = this.$route.query.commentId
+      },
+      /**
+       * 获取焦点评论框
+       */
+      showCommentFocus (parentId) {
+        this.comment.parentId = parentId
+        document.querySelector('.van-field__control').focus()
+        // 获取搜索里的input框
+        // this.$refs.commentInputRef.childNodes[0].childNodes[0].childNodes[1].childNodes[0].childNodes[0].focus()
       }
     },
     created () {
-      const articleId = this.$route.query.articleId
-      this.CommentQuery.articleId = articleId
-      this.$axios.get(`/api/web/article/${articleId}`)
+      const commentId = this.$route.query.commentId
+      this.comment.ancestorId = commentId
+      this.comment.parentId = commentId
+      this.$axios.get(`/api/web/comment/${commentId}`)
         .then(res => {
-          this.article = res
-          this.$store.commit('modules/article/setArticle', res)
+          this.commentAncestor = res
         })
     },
     components: {
       JushiImg,
       VEmojiPicker,
-      commentList
+      defaultComment,
+      commentDetailsList
     }
   }
 </script>

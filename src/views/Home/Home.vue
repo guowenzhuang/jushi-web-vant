@@ -44,9 +44,9 @@
         },
         homeSwipes:
           [
-            'http://iph.href.lu/1280x790?text=巨石',
-            'http://iph.href.lu/1280x790?text=巨石',
-            'http://iph.href.lu/1280x790?text=巨石'
+            'https://iph.href.lu/1280x790?text=巨石',
+            'https://iph.href.lu/1280x790?text=巨石',
+            'https://iph.href.lu/1280x790?text=巨石'
           ]
       }
     },

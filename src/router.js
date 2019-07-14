@@ -80,6 +80,14 @@ export default new Router({
       component: () => import('@/views/ArticleDetails')
     },
     /**
+     * 评论详情
+     */
+    {
+      path: '/comment',
+      name: 'comment',
+      component: () => import('@/views/CommentDetails')
+    },
+    /**
      * 文章发表
      */
     {

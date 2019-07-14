@@ -1,32 +1,36 @@
-# 巨石论坛
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=200px height=200px src="./logo.png" alt="Project logo"></a>
+</p>
 
-> web前端
+<h3 align="center">巨石论坛</h3>
 
-## 技术栈
 
-- Vuecli3+Vuex+VueRoute
+---
 
-- [VantUi](https://youzan.github.io/vant/#/zh-CN/intro)        
+<p align="center"> 
+    一个可以闲聊和讨论技术的论坛
+    <br> 
+</p>
 
-```
-jushi-web-antd
-|
---src   
-| 
-----assept                    资源文件
-|
-----components                组件
-|
-----plugin                    依赖插件
-|
-----store                     Vuex数据管理         
-|
-----views                     页面
-```
+## 📝 目录
+- [介绍](#about)
+- [运行](#run)
+- [项目描述](#jushiDetail)
+- [技术栈](#skill)
+- [TODO](#todo)
+- [作者](#author)
+- [致谢](#thank)
 
-文件目录可以参考 [https://cli.vuejs.org/zh/](https://cli.vuejs.org/zh/)
+## 🧐 介绍 <a name = "about"></a>
+巨石论坛:后端采用java微服务,webflux模式开发 前端采用vue开发的论坛
 
-## 运行
+## 🏁 安装 <a name = "run"></a>
+
+启动后端端
+
+后端链接: [https://github.com/guowenzhuang/jushi](https://github.com/guowenzhuang/jushi-web-vant)
+
 
 安装依赖项 
 
@@ -40,8 +44,38 @@ yarn install
 npm run serve
 ```
 
-## TODO
+访问: [http://localhost:8025](http://localhost:8025)
 
-- 热门贴 置顶帖
 
-- 未集成表情输入
+
+
+## 🔧 项目描述 <a name = "jushiDetail"></a>
+### 目录结构
+```
+|-- jushi-web-antd
+    |-- assets                 资源文件
+    |-- components             组件
+    |-- plugin                 依赖配置
+    |-- store                  状态管理
+    |-- util                   工具
+    |-- views                  页面
+
+```
+### 项目描述
+基于vue和vantUI的h5论坛
+
+
+
+## 🎈 技术栈 <a name="skill"></a>
+
+
+## 🚀 TODO <a name = "todo"></a>
+- 修改头像密码
+- 点赞
+
+## ✍️ 作者 <a name = "authors"></a>
+- [@gwz](https://guowenzhuang.gitee.io/boke/) 
+
+## 🎉 致谢 <a name = "thank"></a>
+- [@qym]() 
+
