@@ -2,7 +2,7 @@
     <div>
         <transition-group name="van-slide-left">
             <div
-                    @click.capture.stop="showCommentFocus(item.id)"
+                    @click.capture.stop="showCommentFocus(item)"
                     :key="item.id"
                     v-for="(item) in childComment">
 
@@ -49,8 +49,8 @@
       /**
        * 调用评论输入框
        */
-      showCommentFocus (parentId) {
-        this.$parent.showCommentFocus(parentId)
+      showCommentFocus (parent) {
+        this.$parent.showCommentFocus(parent)
       },
       // 增加一条评论数据
       pushComment (comment) {
