@@ -1,20 +1,26 @@
 <template>
-    <div>
-        <van-list
-                :offset="30"
-                @load="plainCommentLoad"
-                loading-text="加载中"
-                v-model="plainComment.loading"
-                :finished="plainComment.finished"
-                :finished-text="plainComment.data.length==0?'暂无评论':'亲,已经到底部了哦'"
-        >
-            <transition-group name="van-slide-left">
-                <defaultComment
-                        :comment="item"
-                        :key="item.id"
-                        v-for="(item) in plainComment.data"/>
-            </transition-group>
-        </van-list>
+    <div style="margin-bottom: 30px;">
+        <van-pull-refresh
+                v-model="pullRefreshLoading"
+                success-text="加载成功"
+                @refresh="onRefresh"
+                style="margin-bottom: 20px">
+            <van-list
+                    :offset="30"
+                    @load="plainCommentLoad"
+                    loading-text="加载中"
+                    v-model="plainComment.loading"
+                    :finished="plainComment.finished"
+                    :finished-text="plainComment.data.length==0?'暂无评论':'亲,已经到底部了哦'"
+            >
+                <transition-group name="van-slide-left">
+                    <defaultComment
+                            :comment="item"
+                            :key="item.id"
+                            v-for="(item) in plainComment.data"/>
+                </transition-group>
+            </van-list>
+        </van-pull-refresh>
     </div>
 </template>
 
@@ -22,8 +28,6 @@
   import defaultComment from '@/components/Comment/DefaultComment'
   import _ from 'lodash'
   import qs from 'qs'
-  import moment from 'moment'
-  import dateUtil from '@/util/DateUtil.js'
 
   export default {
     name: 'CommentList',
@@ -34,7 +38,7 @@
     data () {
       return {
         /**
-         * 普通文章
+         * 普通评论
          */
         plainComment: {
           // 最新data
@@ -48,6 +52,16 @@
       }
     },
     methods: {
+      /**
+       * 下拉刷新
+       */
+      onRefresh () {
+        this.plainComment.data = []
+        this.query.page = 0
+        this.plainComment.loading = true
+        this.plainComment.finished = false
+        this.plainCommentLoad()
+      },
       // 增加一条评论数据
       pushComment (comment) {
         this.plainComment.data.unshift(comment)
@@ -58,6 +72,7 @@
       plainCommentLoad () {
         this.plainComment.beforeData = _.clone(this.plainComment.data)
         this.plainCommentQuery(this.query, (res) => {
+          this.pullRefreshLoading = false
           this.plainComment.loading = false
           this.query.page++
           if (!_.isEmpty(res)) {

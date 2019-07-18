@@ -19,8 +19,13 @@
                         </div>
                         <div style="float: right;color:#ED6A0C;" v-if="isRightIcon">
                             <font-awesome-icon :icon="['far', 'thumbs-up']" size="lg"/>
-                            &nbsp;
+                            &nbsp; <span>
+                    {{comment.likeCount==null?0:comment.likeCount}}
+                  </span>
                             <font-awesome-icon :icon="['far', 'comment']" size="lg"/>
+                            <span>
+                    {{comment.commentCount==null?0:comment.commentCount}}
+                  </span>
                         </div>
                     </div>
                 </template>
@@ -71,6 +76,10 @@
       parent: {
         type: Object,
         default: null
+      },
+      clickEvent: {
+        type: Boolean,
+        default: true
       }
     },
     computed: {
@@ -80,12 +89,14 @@
     },
     methods: {
       showComment () {
-        this.$router.push({
-          path: '/comment',
-          query: {
-            commentId: this.comment.id
-          }
-        })
+        if (this.clickEvent) {
+          this.$router.push({
+            path: '/comment',
+            query: {
+              commentId: this.comment.id
+            }
+          })
+        }
       }
     },
     filters: {
@@ -101,7 +112,6 @@
           return dateUtil.timeDifferenceToContent(date)
         }
         return ''
-
       }
     },
 

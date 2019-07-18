@@ -23,7 +23,8 @@
                 <template v-slot:default>
                     <div>
                         <div class="plain-article-title">{{article.title}}</div>
-                        <div class="van-ellipsis">{{article.cover}}</div>
+                        <div class="van-ellipsis plain-article-content">{{article.content|articleContentFilter}}
+                        </div>
                     </div>
                 </template>
                 <template v-slot:footer>
@@ -66,6 +67,14 @@
         })
       }
     },
+    filters: {
+      articleContentFilter: (content) => {
+        let oDiv = document.createElement('div')
+        oDiv.innerHTML = content
+        let text = oDiv.innerText
+        return text
+      }
+    },
     components: {
       JushiImg
     }
@@ -94,6 +103,17 @@
 
         .plain-article-cell {
             margin-top: 1vh;
+        }
+
+        .plain-article-content {
+            font-size: 13px;
+            white-space: normal;
+            /*设置成弹性盒子 */
+            display: -webkit-box;
+            /*显示的个数 */
+            -webkit-line-clamp: 2;
+            /* 属性规定框的子元素应该被水平或垂直排列。 */
+            -webkit-box-orient: vertical;
         }
     }
 </style>

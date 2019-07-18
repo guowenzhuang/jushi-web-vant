@@ -1,5 +1,5 @@
 <template>
-    <div id="issueArticle">
+    <div id="issueArticle" class="webfont">
         <van-nav-bar
                 title="发表文章"
                 left-arrow
@@ -72,7 +72,6 @@
        */
       updateData (e = '') {
         this.article.content = e
-        console.log('e', e)
       },
       /**
        * 加载板块信息

@@ -2,16 +2,17 @@
     <div>
         <transition-group name="van-slide-left">
             <div
-                    @click.capture.stop="showCommentFocus(item)"
                     :key="item.id"
                     v-for="(item) in childComment">
 
-                <defaultComment
-                        ref="commenetRef"
-                        :parent="comment"
-                        :comment="item"
+                <div @click.stop="showCommentFocus(item)">
+                    <defaultComment
+                            :clickEvent="false"
+                            ref="commenetRef"
+                            :parent="comment"
+                            :comment="item"/>
+                </div>
 
-                />
                 <CommentDetailsList
                         ref="commentDetailsRef"
                         v-if="item.children!=null"
@@ -38,19 +39,21 @@
       }
     },
     data () {
-      return {
-        /**
-         * 子级评论详情
-         */
-        pullRefreshLoading: false
-      }
+      return {}
     },
     methods: {
       /**
        * 调用评论输入框
        */
       showCommentFocus (parent) {
-        this.$parent.showCommentFocus(parent)
+        const searchParent = this.getParentSearch(this.$parent)
+        searchParent.showCommentFocus(parent)
+      },
+      getParentSearch (parent) {
+        if (parent.$refs.commentInputRef != null) {
+          return parent
+        }
+        return this.getParentSearch(parent.$parent)
       },
       // 增加一条评论数据
       pushComment (comment) {

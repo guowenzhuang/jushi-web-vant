@@ -39,7 +39,7 @@
           query: {
             page: 0,
             size: 9,
-            order: 'weight'
+            order: 'create_time'
           }
         },
         homeSwipes:

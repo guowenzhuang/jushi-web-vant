@@ -14,6 +14,7 @@
         <div class="search">
             <form action="/">
                 <van-search
+                        @focus="disableTabbar"
                         :clearable="false"
                         shape="round"
                         v-model="article.query.searchContent"
@@ -57,6 +58,13 @@
       }
     },
     methods: {
+
+      /**
+       *  隐藏底部导航
+       */
+      disableTabbar () {
+        this.$parent.isOriginHei = false
+      },
       /**
        * 文章搜索
        */
