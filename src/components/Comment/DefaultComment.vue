@@ -10,7 +10,7 @@
                   :imgWidth="30"
                   :imgHeight="30"
                   :imgUrl="comment.sysUser.imageUrl"
-                  errorUrl="/img/avatar/defaultAvatar.png"
+                  errorUrl="img/avatar/defaultAvatar.png"
                 />
                 &nbsp;
                 <span style="line-height: 30px;">

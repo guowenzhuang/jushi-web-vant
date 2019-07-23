@@ -9,7 +9,7 @@
                 :imgWidth="30"
                 :imgHeight="30"
                 :imgUrl="article.sysUser.imageUrl"
-                errorUrl="/img/avatar/defaultAvatar.png"
+                errorUrl="img/avatar/defaultAvatar.png"
               />
               <div>
                 &nbsp;

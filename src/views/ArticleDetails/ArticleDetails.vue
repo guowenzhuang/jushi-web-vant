@@ -13,7 +13,7 @@
             :imgWidth="50"
             :imgHeight="50"
             :imgUrl="article.sysUser.imageUrl"
-            errorUrl="/img/avatar/defaultAvatar.png"
+            errorUrl="img/avatar/defaultAvatar.png"
           />
         </van-col>
         <van-col>

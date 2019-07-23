@@ -29,7 +29,7 @@
             imgUrl: String,
             errorUrl: {
                 type: String,
-                default: '/img/logo.png'
+                default: 'img/logo.png'
             },
             customClass: String,
             imgWidth: {

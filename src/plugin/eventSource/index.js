@@ -1,6 +1,9 @@
 import qs from 'qs'
 
 let eventSource = (url, params, callFun, fun) => {
+  if (process.env.VUE_APP_API != null) {
+    url = process.env.VUE_APP_API + url
+  }
   let query = qs.stringify(params)
   let source = new EventSource(url + '?' + query, {
     withCredentials: true

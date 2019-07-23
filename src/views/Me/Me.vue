@@ -18,7 +18,7 @@
             <JushiImg
               imgFit="fill"
               :imgUrl="user.info.imageUrl"
-              errorUrl="/img/avatar/defaultAvatar.png"
+              errorUrl="img/avatar/defaultAvatar.png"
             />
           </van-col>
           <van-col span="8">
