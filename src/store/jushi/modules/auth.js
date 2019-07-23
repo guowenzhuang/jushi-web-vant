@@ -5,6 +5,9 @@ export default {
     token: null
   },
   mutations: {
+    logout (state) {
+      state.token = null
+    },
     login (state, data) {
       state.token = data
     }

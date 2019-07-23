@@ -102,6 +102,22 @@ export default new Router({
       path: '/issueArticle',
       name: 'issueArticle',
       component: () => import('@/views/IssueArticle')
+    },
+    /**
+     * 我的文章
+     */
+    {
+      path: '/myArticles',
+      name: 'myArticles',
+      component: () => import('@/views/MyArticles')
+    },
+    /**
+     * 我的文章
+     */
+    {
+      path: '/myLike',
+      name: 'myLike',
+      component: () => import('@/views/MyLike')
     }
   ]
 })

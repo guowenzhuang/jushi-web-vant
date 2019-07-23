@@ -24,7 +24,9 @@ import {
   Search,
   NavBar,
   ActionSheet,
-  Dialog
+  Dialog,
+  Uploader,
+  Overlay
 } from 'vant'
 import Vue from 'vue'
 
@@ -54,3 +56,5 @@ Vue.use(Image)
   .use(NavBar)
   .use(ActionSheet)
   .use(Dialog)
+  .use(Uploader)
+  .use(Overlay)

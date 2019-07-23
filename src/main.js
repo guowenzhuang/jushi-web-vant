@@ -7,6 +7,7 @@ import 'lib-flexible'
 // eslint-disable-next-line
 import '@/plugin/vant'
 import PluginAxios from '@/plugin/axios'
+import EventSource from '@/plugin/eventSource'
 import config from '../config'
 import PluginBase64 from '@/plugin/base64'
 import vueHtml5Editor from './plugin/vueHtml5Editor'
@@ -41,6 +42,7 @@ Vue.component('font-awesome-layers-text', FontAwesomeLayersText)
 Vue.config.productionTip = false
 
 Vue.use(PluginAxios)
+Vue.use(EventSource)
 Vue.use(config)
 Vue.use(PluginBase64)
 

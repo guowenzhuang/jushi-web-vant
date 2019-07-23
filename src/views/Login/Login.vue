@@ -93,12 +93,12 @@
             password: password
           }
         }).then(res => {
-          this.loginLoading = false
           this.$store.commit('modules/auth/login', res.token)
           Cookies.set('token', res.token)
           this.getUserInfo()
         }).catch(res => {
-          this.loginLoading = false
+            this.loginLoading = false
+            this.loginLoading = false
           this.$toast.fail('登录失败请检查用户名和密码是否正确')
         })
       },
@@ -109,7 +109,8 @@
         // 获取用户信息
         this.$axios('/api/admin/user/getCurrentUser').then(
           res => {
-            this.$store.commit('modules/user/setUserInfo', res)
+              this.loginLoading = false
+              this.$store.commit('modules/user/setUserInfo', res)
             this.$router.push('/main/home')
           }
         )
