@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueHtml5Editor from 'vue-html5-editor'
+import Cookies from 'js-cookie'
 
-export default function() {
+export default function () {
   let opt = {
     // 全局组件名称，使用new VueHtml5Editor(options)时该选项无效
     name: 'vue-html5-editor',
@@ -31,10 +32,15 @@ export default function() {
       // 上传参数,默认把图片转为base64而不上传
       // upload config,default null and convert image to base64
       upload: {
-        url: null,
-        headers: {},
-        params: {},
-        fieldName: {}
+        url: '',
+        // url: '/api/oss/file/upload',
+        headers: {
+          // Authorization: `Bearer ${Cookies.get('token')}`
+        },
+        params: {
+          // path: 'article/img/temp/'
+        },
+        fieldName: 'editor'
       },
       // 压缩参数,默认使用localResizeIMG进行压缩,设置为null禁止压缩
       // width和height是文件的最大宽高
@@ -48,8 +54,8 @@ export default function() {
         // default accept json data like  {ok:false,msg:"unexpected"} or {ok:true,data:"image url"}
         var json = JSON.parse(responseText)
         console.info(json)
-        if (!json.ok) {
-          alert(json.msg)
+        if (!json.flag) {
+          alert(json.message)
         } else {
           return json.data
         }

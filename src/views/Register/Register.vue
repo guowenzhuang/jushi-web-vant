@@ -9,7 +9,7 @@
         <van-row type="flex" justify="center">
             <van-col span="8">
                 <van-image
-                        src="/img/logo.png"></van-image>
+                        src="img/logo.png"></van-image>
             </van-col>
         </van-row>
         <van-row type="flex" justify="center">

@@ -9,10 +9,10 @@
 
 .jushi-icon {
   font-family: "jushi-icon" !important;
-  font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
 }
 
 .jushi-icon-wodebankuai:before {

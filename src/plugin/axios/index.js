@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Notify } from 'vant'
+import {Notify} from 'vant'
 import Cookies from 'js-cookie'
 
 // 记录和显示错误
@@ -23,9 +23,16 @@ const service = axios.create({
 })
 // 请求的拦截器
 service.interceptors.request.use(config => {
-  const token = Cookies.get('token')
+  let token = Cookies.get('token')
+  if (token == null && localStorage.getItem('jushi') != null) {
+    const jushiLocal = JSON.parse(localStorage.getItem('jushi'))
+    if (jushiLocal != null && jushiLocal.root != null) {
+      token = jushiLocal.root.modules.auth.token
+      Cookies.set('token', token)
+    }
+  }
   // token不为null
-  if (token != null && token !== '') {
+  if (token != null && token !== '' && token !== 'null') {
     config.headers = {
       Authorization: `Bearer ${token}`,
       ...config.headers
@@ -88,8 +95,3 @@ export default {
   },
   service
 }
-
-
-
-
-
