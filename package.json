@@ -10,7 +10,7 @@
     "buildPages": "vue-cli-service build --mode codingme"
   },
   "dependencies": {
-    "@capacitor/cli": "^1.0.0",
+    "@capacitor/cli": "^1.5.3",
     "@capacitor/core": "^1.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-brands-svg-icons": "^5.9.0",
